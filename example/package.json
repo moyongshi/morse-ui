@@ -3,9 +3,11 @@
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
-    "ios": "expo start --ios",
+    "ios": "expo start --ios --port=5388",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "flipper": "METRO_SERVER_PORT=5388 open -a Flipper.app",
+    "dev": "yarn run ios && yarn run flipper"
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.5",
