@@ -1,0 +1,7 @@
+{
+  "symbol_url": "https://at.alicdn.com/t/font_2553510_7cds497uxwn.js",
+  "use_typescript": true,
+  "save_dir": "./src/components/Icon/",
+  "trim_icon_prefix": "van-icon",
+  "default_icon_size": 20
+}

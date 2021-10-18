@@ -7,3 +7,5 @@ export { default as Modal } from './components/Modal';
 export * from './components/Modal';
 
 export * from './components/Theme';
+
+export * from './components/Icon';

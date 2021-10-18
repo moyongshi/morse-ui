@@ -31,9 +31,10 @@
     "morse-react-native"
   ],
   "scripts": {
-    "prebuild": "rimraf lib",
+    "prebuild": "rimraf lib && icon-build",
     "build": "bob build",
     "devBuild": "yarn build && yalc push",
+    "icon-build": "rimraf src/components/Icon && iconfont-rn",
     "dev": "onchange 'src/**/*.ts' 'src/**/*.tsx' -- yarn devBuild",
     "prepublishOnly": "yarn build",
     "yalcPublish": "yalc publish",
@@ -77,6 +78,7 @@
     "onchange": "^7.1.0",
     "patch-package": "^6.4.7",
     "pod-install": "^0.1.24",
+    "react-native-iconfont-cli": "^2.2.4",
     "react-native-mock-render": "^0.1.9",
     "react-test-renderer": "17.0.1",
     "rimraf": "^3.0.2",
