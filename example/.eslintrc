@@ -1,0 +1,12 @@
+{
+  "extends": "../.eslintrc",
+
+  "settings": {
+    "import/core-modules": [ "morse-ui" ]
+  },
+
+  "rules": {
+    "react/prop-types": "off",
+    "react/style-prop-object": "off"
+  }
+}
