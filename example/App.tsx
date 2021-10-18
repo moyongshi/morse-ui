@@ -9,7 +9,7 @@ export default function App() {
       <Text>Open up App.tsx to start working on your app!</Text>
       <Text>Open up App.tsx to start working on your app!</Text>
       <Text>Open up App.tsx to start working on your app!</Text>
-      <Button>
+      <Button loading loadingText="ssss">
         <IconFont name="add" size={20} color="red" />
         <Text>点击</Text>
       </Button>

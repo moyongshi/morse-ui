@@ -1,14 +1,25 @@
-import React, { ComponentProps } from 'react';
-import { GestureResponderEvent, Pressable, StyleProp, View, ViewStyle } from 'react-native';
+import React, { ComponentProps, Fragment, isValidElement, ReactNode } from 'react';
+import {
+  GestureResponderEvent,
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from 'react-native';
+import IconFont from '../Icon';
+import { themes, ThemeProvider, useTheme } from '../Theme';
 
 type OwnProps = ComponentProps<typeof Pressable> & {
   /**
    * 不同的按钮样式
-   * - `outlined` - 边框型
-   * - `contained` - 填充型
-   * - `none` - 无边框
+   * - `primary` - 边框型
+   * - `dashed` - 填充型
+   * - `text` - 无边框
+   * - `default` - 无边框
    */
-  type?: 'primary' | 'dashed' | 'link' | 'text' | 'default';
+  type?: ButtonType;
   /**
    * 按钮失效状态
    */
@@ -29,9 +40,28 @@ type OwnProps = ComponentProps<typeof Pressable> & {
   /**
    * loading时显示的文本
    */
-  loadingText?: boolean;
+  loadingText?: string;
+  /**
+   * 按钮文字左边的图标
+   */
+  leftIcon?: ReactNode;
+  /**
+   * 按钮文字右边的图标
+   */
+  rightIcon?: ReactNode;
+  /**
+   * 按钮开头的图标
+   * 会被leftIcon覆盖
+   */
+  startIcon?: ReactNode;
+  /**
+   * 按钮结尾的图标
+   * 会被rightIcon覆盖
+   */
+  endIcon?: ReactNode;
   /**
    * 尺寸
+   * @deprecated 暂不实现
    * - `small` - 小号尺寸
    * - `middle` - 常规尺寸
    * - `large` - 大号尺寸
@@ -45,20 +75,6 @@ type OwnProps = ComponentProps<typeof Pressable> & {
    */
   shape?: 'default' | 'circle' | 'round';
   /**
-   * 点击
-   * @param e
-   */
-  onPress?: (e: GestureResponderEvent) => void;
-  /**
-   * 长按，默认点击500ms时触发
-   * @param e
-   */
-  onLongPress?: (e: GestureResponderEvent) => void;
-  /**
-   * 渲染
-   */
-  children?: React.ReactNode;
-  /**
    * 采用view的样式
    */
   style?: StyleProp<ViewStyle>;
@@ -67,24 +83,52 @@ type OwnProps = ComponentProps<typeof Pressable> & {
 export type ButtonProps = OwnProps;
 
 /**
+ * 按钮类型
+ */
+export type ButtonType = 'primary' | 'dashed' | 'text' | 'default';
+
+/**
  * 按钮
  * 1、点击功能
  * 2、三种模式的样式
  */
 const Button = ({
+  type = 'default',
   disabled: disabledProp,
   loading: loadingProp,
+  leftIcon: leftIconProp,
+  startIcon: startIconProp,
+  rightIcon: rightIconProp,
+  endIcon: endIconProp,
   onPress,
   onLongPress,
   style,
+  loadingText,
   children,
   ...rest
 }: OwnProps) => {
   const handleLongPress = (e: GestureResponderEvent) => {
     onLongPress?.(e);
   };
+  const theme = useTheme();
 
   const disabled = disabledProp || loadingProp;
+  const startIcon = leftIconProp || startIconProp;
+  const endIcon = rightIconProp || endIconProp;
+
+  const boxChildren =
+    loadingProp && loadingText ? (
+      isValidElement(loadingText) ? (
+        loadingText
+      ) : (
+        <>
+          <IconFont size={20} name="add" color={theme.white} style={{ marginRight: 8 }} />
+          <Text style={styles.text}>{loadingText}</Text>
+        </>
+      )
+    ) : (
+      children
+    );
 
   /**
    * 处理UI层样式
@@ -93,12 +137,26 @@ const Button = ({
 
   return (
     <Surface style={surfaceStyle} {...rest}>
-      <Pressable onPress={onPress} onLongPress={handleLongPress}>
-        {children}
+      <Pressable style={styles.button} onPress={onPress} onLongPress={handleLongPress}>
+        {boxChildren}
       </Pressable>
     </Surface>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: 'blue',
+    flexDirection: 'row',
+    padding: 8,
+  },
+  icon: {
+    // backgroundColor:C
+  },
+  text: {
+    color: 'white',
+  },
+});
 
 export type SurfaceProps = {
   /**
@@ -116,7 +174,12 @@ export type SurfaceProps = {
  * @constructor
  */
 const Surface = ({ style, children }: SurfaceProps) => {
-  return <View style={style}>{children}</View>;
+  return (
+    // @ts-ignore
+    <ThemeProvider theme={themes}>
+      <View style={style}>{children}</View>
+    </ThemeProvider>
+  );
 };
 
 export default Button;
