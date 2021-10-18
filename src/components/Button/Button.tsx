@@ -8,9 +8,9 @@ type OwnProps = ComponentProps<typeof Pressable> & {
    * - `contained` - 填充型
    * - `none` - 无边框
    */
-  mode?: 'outlined' | 'contained' | 'none';
+  type?: 'primary' | 'dashed' | 'link' | 'text' | 'default';
   /**
-   * 是否可用
+   * 按钮失效状态
    */
   disabled?: boolean;
   /**
@@ -18,17 +18,32 @@ type OwnProps = ComponentProps<typeof Pressable> & {
    */
   loading?: boolean;
   /**
+   * 设置危险按钮
+   */
+  danger?: boolean;
+  /**
+   * 幽灵属性，使按钮背景透明
+   * 幽灵按钮将按钮的内容反色，背景变为透明，常用在有色背景上。
+   */
+  ghost?: boolean;
+  /**
    * loading时显示的文本
    */
   loadingText?: boolean;
   /**
    * 尺寸
-   * - `mini` - 极小尺寸
    * - `small` - 小号尺寸
    * - `middle` - 常规尺寸
    * - `large` - 大号尺寸
    */
-  size?: 'mini' | 'small' | 'middle' | 'large';
+  size?: 'small' | 'middle' | 'large';
+  /**
+   * 按钮形状
+   * - default - 默认矩形
+   * - circle - 圆形
+   * - round - 圆角
+   */
+  shape?: 'default' | 'circle' | 'round';
   /**
    * 点击
    * @param e
@@ -40,9 +55,9 @@ type OwnProps = ComponentProps<typeof Pressable> & {
    */
   onLongPress?: (e: GestureResponderEvent) => void;
   /**
-   * 渲染的孩子
+   * 渲染
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /**
    * 采用view的样式
    */

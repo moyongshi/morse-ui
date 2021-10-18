@@ -8,4 +8,5 @@ export * from './components/Modal';
 
 export * from './components/Theme';
 
+export { default as IconFont } from './components/Icon';
 export * from './components/Icon';
