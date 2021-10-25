@@ -13,6 +13,14 @@ export default function App() {
         <IconFont name="add" size={20} color="red" />
         <Text>点击</Text>
       </Button>
+
+      <Button type="primary">点击</Button>
+      <Button type="dased">点击</Button>
+      <Button>点击</Button>
+      <Button>点击</Button>
+      <Button>点击</Button>
+      <Button>点击</Button>
+
       <Modal visible={false}>
         <Text>点击</Text>
       </Modal>

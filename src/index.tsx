@@ -6,7 +6,7 @@ export * from './components/Button';
 export { default as Modal } from './components/Modal';
 export * from './components/Modal';
 
-export * from './components/Theme';
+export * from './core/Theme';
 
 export { default as IconFont } from './components/Icon';
 export * from './components/Icon';

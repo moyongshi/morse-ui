@@ -1,4 +1,4 @@
-import React, { ComponentProps, Fragment, isValidElement, ReactNode } from 'react';
+import React, { ComponentProps, isValidElement, ReactNode } from 'react';
 import {
   GestureResponderEvent,
   Pressable,
@@ -9,15 +9,15 @@ import {
   ViewStyle,
 } from 'react-native';
 import IconFont from '../Icon';
-import { themes, ThemeProvider, useTheme } from '../Theme';
+import { withTheme, Theme } from '../../core/Theme';
 
 type OwnProps = ComponentProps<typeof Pressable> & {
   /**
    * 不同的按钮样式
-   * - `primary` - 边框型
-   * - `dashed` - 填充型
-   * - `text` - 无边框
-   * - `default` - 无边框
+   * - primary -  有边框填充主色调  主按钮
+   * - default -  有边框无填充     次按钮
+   * - dashed  -  虚线边框无填充   虚线按钮
+   * - text    -  纯文字          文本按钮
    */
   type?: ButtonType;
   /**
@@ -28,15 +28,6 @@ type OwnProps = ComponentProps<typeof Pressable> & {
    * 是否loading状态
    */
   loading?: boolean;
-  /**
-   * 设置危险按钮
-   */
-  danger?: boolean;
-  /**
-   * 幽灵属性，使按钮背景透明
-   * 幽灵按钮将按钮的内容反色，背景变为透明，常用在有色背景上。
-   */
-  ghost?: boolean;
   /**
    * loading时显示的文本
    */
@@ -78,6 +69,7 @@ type OwnProps = ComponentProps<typeof Pressable> & {
    * 采用view的样式
    */
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
 };
 
 export type ButtonProps = OwnProps;
@@ -105,16 +97,23 @@ const Button = ({
   style,
   loadingText,
   children,
+  theme,
   ...rest
 }: OwnProps) => {
   const handleLongPress = (e: GestureResponderEvent) => {
     onLongPress?.(e);
   };
-  const theme = useTheme();
 
   const disabled = disabledProp || loadingProp;
   const startIcon = leftIconProp || startIconProp;
   const endIcon = rightIconProp || endIconProp;
+
+  const spacing = theme?.spacing;
+
+  // 主色调
+  const mainColor = theme.palette.primary.main;
+  // 文字
+  const textColor = theme.palette.common.white;
 
   const boxChildren =
     loadingProp && loadingText ? (
@@ -122,22 +121,31 @@ const Button = ({
         loadingText
       ) : (
         <>
-          <IconFont size={20} name="add" color={theme.white} style={{ marginRight: 8 }} />
+          <IconFont
+            size={20}
+            name="add"
+            color={theme?.palette.primary.main}
+            style={{ marginRight: 8 }}
+          />
           <Text style={styles.text}>{loadingText}</Text>
         </>
       )
-    ) : (
+    ) : isValidElement(children) ? (
       children
+    ) : (
+      <Text style={styles.text}>{children}</Text>
     );
 
   /**
    * 处理UI层样式
    */
-  const surfaceStyle = disabled ? {} : style;
+  const surfaceStyle: StyleProp<ViewStyle> = disabled
+    ? {}
+    : { backgroundColor: theme.palette.primary.main };
 
   return (
     <Surface style={surfaceStyle} {...rest}>
-      <Pressable style={styles.button} onPress={onPress} onLongPress={handleLongPress}>
+      <Pressable onPress={onPress} onLongPress={handleLongPress}>
         {boxChildren}
       </Pressable>
     </Surface>
@@ -174,12 +182,7 @@ export type SurfaceProps = {
  * @constructor
  */
 const Surface = ({ style, children }: SurfaceProps) => {
-  return (
-    // @ts-ignore
-    <ThemeProvider theme={themes}>
-      <View style={style}>{children}</View>
-    </ThemeProvider>
-  );
+  return <View style={style}>{children}</View>;
 };
 
-export default Button;
+export default withTheme(Button);
