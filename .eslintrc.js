@@ -1,7 +1,12 @@
 module.exports = {
-  extends: ['@youngjuning/eslint-config/react-native'],
+  extends: ['@callstack'],
   rules: {
     'react-native/no-raw-text': 'off',
     'react/require-default-props': 'off',
+    'react-native/sort-styles': [
+      'error',
+      'asc',
+      { ignoreClassNames: true, ignoreStyleProperties: true },
+    ],
   },
 };

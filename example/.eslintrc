@@ -7,6 +7,8 @@
 
   "rules": {
     "react/prop-types": "off",
-    "react/style-prop-object": "off"
+    "react/style-prop-object": "off",
+    "react-native/no-color-literals": "off",
+    "react-native/no-inline-styles": "off"
   }
 }

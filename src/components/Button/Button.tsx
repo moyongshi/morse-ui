@@ -1,25 +1,33 @@
-import React, { ComponentProps, isValidElement, ReactNode } from 'react';
+import React, { ComponentProps, isValidElement, ReactNode, useState } from 'react';
 import {
   GestureResponderEvent,
-  Pressable,
   StyleProp,
   StyleSheet,
   Text,
-  View,
+  TextStyle,
+  TouchableHighlight,
+  TouchableOpacity,
   ViewStyle,
 } from 'react-native';
+import Color from 'color';
 import IconFont from '../Icon';
-import { withTheme, Theme } from '../../core/Theme';
+import { defaultTheme } from '../../core/Theme';
+import renderNode from '../../utils/renderNode';
 
-type OwnProps = ComponentProps<typeof Pressable> & {
+const { spacing, palette } = defaultTheme;
+
+type OwnProps = ComponentProps<typeof TouchableOpacity> & {
   /**
-   * 不同的按钮样式
-   * - primary -  有边框填充主色调  主按钮
-   * - default -  有边框无填充     次按钮
-   * - dashed  -  虚线边框无填充   虚线按钮
+   * 填充模式
+   * - solid -  填充主色调  主按钮
+   * - outlined  -  边框主色调   虚线按钮
    * - text    -  纯文字          文本按钮
    */
-  type?: ButtonType;
+  fill?: ButtonFillType;
+  /**
+   * 颜色
+   */
+  color?: ButtonColorType;
   /**
    * 按钮失效状态
    */
@@ -51,33 +59,26 @@ type OwnProps = ComponentProps<typeof Pressable> & {
    */
   endIcon?: ReactNode;
   /**
-   * 尺寸
-   * @deprecated 暂不实现
-   * - `small` - 小号尺寸
-   * - `middle` - 常规尺寸
-   * - `large` - 大号尺寸
-   */
-  size?: 'small' | 'middle' | 'large';
-  /**
-   * 按钮形状
-   * - default - 默认矩形
-   * - circle - 圆形
-   * - round - 圆角
-   */
-  shape?: 'default' | 'circle' | 'round';
-  /**
    * 采用view的样式
    */
   style?: StyleProp<ViewStyle>;
-  theme: Theme;
+  /**
+   * testID
+   */
+  testID?: string;
 };
 
 export type ButtonProps = OwnProps;
 
 /**
- * 按钮类型
+ * 按钮填充类型
  */
-export type ButtonType = 'primary' | 'dashed' | 'text' | 'default';
+export type ButtonFillType = 'solid' | 'outlined' | 'none';
+
+/**
+ * 色调
+ */
+export type ButtonColorType = 'primary' | 'success' | 'warning' | 'error';
 
 /**
  * 按钮
@@ -85,35 +86,52 @@ export type ButtonType = 'primary' | 'dashed' | 'text' | 'default';
  * 2、三种模式的样式
  */
 const Button = ({
-  type = 'default',
+  fill = 'solid',
+  color: colorProp = 'primary',
   disabled: disabledProp,
   loading: loadingProp,
   leftIcon: leftIconProp,
   startIcon: startIconProp,
   rightIcon: rightIconProp,
   endIcon: endIconProp,
-  onPress,
-  onLongPress,
   style,
   loadingText,
   children,
-  theme,
-  ...rest
+  onPressIn,
+  onPressOut,
+  ...pressRest
 }: OwnProps) => {
-  const handleLongPress = (e: GestureResponderEvent) => {
-    onLongPress?.(e);
-  };
-
+  const [isActive, setIsActive] = useState(false);
   const disabled = disabledProp || loadingProp;
   const startIcon = leftIconProp || startIconProp;
   const endIcon = rightIconProp || endIconProp;
 
-  const spacing = theme?.spacing;
+  const color = colorProp || 'primary';
+  const mainColor = palette[color].main;
 
-  // 主色调
-  const mainColor = theme.palette.primary.main;
-  // 文字
-  const textColor = theme.palette.common.white;
+  const textColor = 'white';
+
+  const textStyle: StyleProp<TextStyle> = {
+    ...(fill === 'solid' && { color: textColor }),
+    ...(fill === 'outlined' && { color: mainColor }),
+  };
+
+  const fillStyle: StyleProp<ViewStyle> = {
+    ...(fill === 'solid' && { backgroundColor: mainColor }),
+    ...(fill === 'outlined' && {
+      borderColor: mainColor,
+      borderWidth: 1,
+      backgroundColor: textColor,
+    }),
+  };
+
+  // 按下的背景色
+  const underlayColor =
+    fill === 'solid'
+      ? palette[color].active
+      : fill === 'outlined'
+      ? palette.gray['gray-1']
+      : 'white';
 
   const boxChildren =
     loadingProp && loadingText ? (
@@ -121,68 +139,45 @@ const Button = ({
         loadingText
       ) : (
         <>
-          <IconFont
-            size={20}
-            name="add"
-            color={theme?.palette.primary.main}
-            style={{ marginRight: 8 }}
-          />
-          <Text style={styles.text}>{loadingText}</Text>
+          <IconFont size={20} name="add" color={mainColor} style={{ marginRight: 8 }} />
+          <Text style={textStyle}>{loadingText}</Text>
         </>
       )
-    ) : isValidElement(children) ? (
-      children
     ) : (
-      <Text style={styles.text}>{children}</Text>
+      renderNode(Text, children, { style: textStyle })
     );
 
-  /**
-   * 处理UI层样式
-   */
-  const surfaceStyle: StyleProp<ViewStyle> = disabled
-    ? {}
-    : { backgroundColor: theme.palette.primary.main };
+  const handlePressIn = (e: GestureResponderEvent) => {
+    setIsActive(true);
+    onPressIn?.(e);
+  };
+
+  const handlePressOut = (e: GestureResponderEvent) => {
+    setIsActive(false);
+    onPressOut?.(e);
+  };
 
   return (
-    <Surface style={surfaceStyle} {...rest}>
-      <Pressable onPress={onPress} onLongPress={handleLongPress}>
-        {boxChildren}
-      </Pressable>
-    </Surface>
+    <TouchableHighlight
+      style={[styles.button, fillStyle, style]}
+      underlayColor={underlayColor}
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}
+      {...pressRest}
+    >
+      {boxChildren}
+    </TouchableHighlight>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: 'blue',
-    flexDirection: 'row',
-    padding: 8,
-  },
-  icon: {
-    // backgroundColor:C
-  },
-  text: {
-    color: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: spacing * 2,
+    paddingHorizontal: spacing * 4,
+    borderRadius: spacing,
   },
 });
 
-export type SurfaceProps = {
-  /**
-   * 渲染的孩子
-   */
-  children: React.ReactNode;
-  /**
-   * 采用view的样式
-   */
-  style?: StyleProp<ViewStyle>;
-};
-
-/**
- * 效果UI组件
- * @constructor
- */
-const Surface = ({ style, children }: SurfaceProps) => {
-  return <View style={style}>{children}</View>;
-};
-
-export default withTheme(Button);
+export default Button;

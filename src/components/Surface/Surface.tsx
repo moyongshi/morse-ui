@@ -1,8 +1,12 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { FunctionComponent } from 'react';
+import { StyleProp, View, ViewStyle } from 'react-native';
 
-const Surface = () => {
-  return <View />;
+type OwnProps = {
+  style?: StyleProp<ViewStyle>;
+};
+
+const Surface: FunctionComponent<OwnProps> = ({ ...rest }) => {
+  return <View {...rest} />;
 };
 
 export default Surface;

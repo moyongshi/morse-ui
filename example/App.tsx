@@ -1,39 +1,28 @@
+import { defaultTheme, Flex } from 'morse-ui';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
-import { Flex, Button, Modal, IconFont } from 'morse-ui';
+import { StyleSheet } from 'react-native';
+import AllButtons from './components/Button/AllButtons';
+
+export const STATUS_HEIGHT = 30;
+
+const { palette } = defaultTheme;
 
 export default function App() {
   return (
-    <Flex direction="column" style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <Button loading loadingText="ssss">
-        <IconFont name="add" size={20} color="red" />
-        <Text>点击</Text>
-      </Button>
-
-      <Button type="primary">点击</Button>
-      <Button type="dased">点击</Button>
-      <Button>点击</Button>
-      <Button>点击</Button>
-      <Button>点击</Button>
-      <Button>点击</Button>
-
-      <Modal visible={false}>
-        <Text>点击</Text>
-      </Modal>
+    <Flex direction="column" style={styles.root}>
+      {/*状态栏*/}
       <StatusBar style="auto" />
+
+      <AllButtons />
     </Flex>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: '#fff',
+  root: {
     flex: 1,
-    justifyContent: 'center',
+    paddingTop: STATUS_HEIGHT,
+    backgroundColor: palette.background.default,
   },
 });

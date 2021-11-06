@@ -16,14 +16,14 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/callstack/react-native-paper.git"
+    "url": "https://github.com/moyongshi/morse-ui.git"
   },
   "author": "hesong gao <hs_gao@trip.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/callstack/react-native-paper/issues"
+    "url": "https://github.com/moyongshi/morse-ui/issues"
   },
-  "homepage": "https://github.com/moyongshi/morse-react-native#readme",
+  "homepage": "https://github.com/moyongshi/morse-ui/blob/master/README.md",
   "keywords": [
     "ui",
     "react",
@@ -46,13 +46,14 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
+    "@callstack/eslint-config": "^11.0.0",
     "@commitlint/cli": "^12.1.4",
+    "@types/color": "^3.0.2",
     "@types/enzyme": "^3.10.9",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.65.0",
     "@types/react-test-renderer": "^16.9.2",
-    "@youngjuning/eslint-config": "^1.4.0",
     "@youngjuning/prettier-config": "^1.0.0",
     "babel-jest": "^26.6.3",
     "babel-plugin-module-resolver": "^4.1.0",
@@ -64,11 +65,6 @@
     "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.2",
     "eslint": "^7.32.0",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-react-native": "^3.11.0",
     "jest": "^26.6.3",
     "jest-enzyme": "^7.1.2",
     "lerna": "^4.0.0",
@@ -102,8 +98,8 @@
     "theming": "^3.3.0"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-native": "*",
+    "react": ">=16.5",
+    "react-native": ">=0.64",
     "react-native-vector-icons": "*"
   },
   "resolutions": {
