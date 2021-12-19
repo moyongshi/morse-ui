@@ -10,3 +10,5 @@ export * from './core/Theme';
 
 export { default as IconFont } from './components/Icon';
 export * from './components/Icon';
+
+export { default as Popup } from './components/Popup';
