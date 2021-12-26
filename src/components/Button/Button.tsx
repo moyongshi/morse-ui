@@ -9,10 +9,10 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import Color from 'color';
-import IconFont from '../Icon';
+
 import { defaultTheme } from '../../core/Theme';
 import renderNode from '../../utils/renderNode';
+import IconFont from '../Icon';
 
 const { spacing, palette } = defaultTheme;
 
