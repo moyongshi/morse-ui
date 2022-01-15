@@ -1,8 +1,7 @@
-import { defaultTheme, Flex, Popup, Button } from 'morse-ui';
 import { StatusBar } from 'expo-status-bar';
+import { Button, defaultTheme, Flex, Popup } from 'morse-ui';
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
-import AllButtons from './components/Button/AllButtons';
 
 export const STATUS_HEIGHT = 30;
 
@@ -12,16 +11,16 @@ export default function App() {
   const [visible, setVisible] = useState(false);
   const toggle = () => setVisible(!visible);
   return (
-    <Flex direction="column" style={styles.root}>
+    <Flex direction='column' style={styles.root}>
       {/*状态栏*/}
-      <StatusBar style="auto" />
+      <StatusBar style='auto' />
       {/*<AllButtons />*/}
-      <Button style={{ marginTop: 30 }} onPress={() => setVisible(true)}>
+      <Button style={{ marginTop: 30 }} onPress={toggle}>
         打开
       </Button>
       <Popup
         visible={visible}
-        direction="bottom"
+        direction='bottom'
         onMaskClick={() => setVisible(false)}
         afterOpen={() => console.log('打开')}
         afterClose={() => console.log('关闭')}

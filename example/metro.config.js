@@ -1,7 +1,7 @@
-// /* eslint-disable import/no-commonjs */
+/* eslint-disable import/no-commonjs */
 
 const path = require('path');
-const blacklist = require('metro-config/src/defaults/blacklist');
+const blacklist = require('metro-config/src/defaults/exclusionList');
 const escape = require('escape-string-regexp');
 const pak = require('../package.json');
 
@@ -12,9 +12,7 @@ module.exports = {
   watchFolders: [root],
   // 解决无法正确引入本地包的问题
   resolver: {
-    blacklistRE: blacklist(
-      modules.map(m => new RegExp(`^${escape(path.join(root, 'node_modules', m))}\\/.*$`))
-    ),
+    blacklistRE: blacklist(modules.map((m) => new RegExp(`^${escape(path.join(root, 'node_modules', m))}\\/.*$`))),
 
     extraNodeModules: modules.reduce((acc, name) => {
       acc[name] = path.join(__dirname, 'node_modules', name);

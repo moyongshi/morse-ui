@@ -2,13 +2,17 @@ module.exports = {
   extends: ['@callstack'],
   plugins: ['simple-import-sort'],
   rules: {
-    'react-native/no-raw-text': 'error',
     'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
     'react/require-default-props': 'off',
-    'react-native/sort-styles': [
-      'error',
-      'asc',
-      { ignoreClassNames: true, ignoreStyleProperties: true },
+    'react-native/sort-styles': ['error', 'asc', { ignoreClassNames: true, ignoreStyleProperties: true }],
+    'prettier/prettier': [
+      2,
+      {
+        jsxSingleQuote: true,
+        printWidth: 150,
+        singleQuote: true,
+        jsxBracketSameLine: false,
+      },
     ],
     'sort-imports': 'off',
     'import/order': 'off',
@@ -33,5 +37,6 @@ module.exports = {
     'simple-import-sort/exports': 'warn',
     'react-native-a11y/has-accessibility-hint': 0,
     'react-native-a11y/has-valid-accessibility-descriptors': 0,
+    'react-native/no-raw-text': [2, { skip: ['Button'] }],
   },
 };
