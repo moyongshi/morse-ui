@@ -5,11 +5,13 @@ module.exports = {
     'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
     'react/require-default-props': 'off',
     'react-native/sort-styles': ['error', 'asc', { ignoreClassNames: true, ignoreStyleProperties: true }],
+    'react-native/sort-styles': ['error', 'asc', { ignoreClassNames: true, ignoreStyleProperties: true }],
     'prettier/prettier': [
       2,
       {
         jsxSingleQuote: true,
         printWidth: 150,
+        bracketSpacing: true,
         singleQuote: true,
         jsxBracketSameLine: false,
       },

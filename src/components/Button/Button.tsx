@@ -1,14 +1,5 @@
 import React, { ComponentProps, isValidElement, ReactNode, useState } from 'react';
-import {
-  GestureResponderEvent,
-  StyleProp,
-  StyleSheet,
-  Text,
-  TextStyle,
-  TouchableHighlight,
-  TouchableOpacity,
-  ViewStyle,
-} from 'react-native';
+import { GestureResponderEvent, StyleProp, StyleSheet, Text, TextStyle, TouchableHighlight, TouchableOpacity, ViewStyle } from 'react-native';
 
 import { defaultTheme } from '../../core/Theme';
 import renderNode from '../../utils/renderNode';
@@ -126,12 +117,7 @@ const Button = ({
   };
 
   // 按下的背景色
-  const underlayColor =
-    fill === 'solid'
-      ? palette[color].active
-      : fill === 'outlined'
-      ? palette.gray['gray-1']
-      : 'white';
+  const underlayColor = fill === 'solid' ? palette[color].active : fill === 'outlined' ? palette.gray['gray-1'] : 'white';
 
   const boxChildren =
     loadingProp && loadingText ? (
