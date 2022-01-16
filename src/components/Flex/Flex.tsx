@@ -1,14 +1,14 @@
 import React from 'react';
-import { StyleProp, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
+import { TouchableWithoutFeedback, TouchableWithoutFeedbackProps, View } from 'react-native';
+
 import { FlexPropsType } from './PropsType';
 
-export interface FlexProps extends FlexPropsType {
-  onPress?: () => void;
-  onLongPress?: () => void;
-  onPressIn?: () => void;
-  onPressOut?: () => void;
-  style?: StyleProp<ViewStyle>;
-}
+export interface FlexProps extends FlexPropsType, ExtendTouchType {}
+
+type ExtendTouchType = Pick<
+  TouchableWithoutFeedbackProps,
+  'style' | 'testID' | 'onPress' | 'onPressIn' | 'onPressOut' | 'onLongPress' | 'onLayout' | 'accessible'
+>;
 
 export default class Flex extends React.Component<FlexProps, any> {
   static Item: any;
@@ -23,7 +23,7 @@ export default class Flex extends React.Component<FlexProps, any> {
   render() {
     const { style, direction, wrap, justify, align, children, ...restProps } = this.props;
     const transferConst = [justify, align];
-    const transferConstStyle = transferConst.map(el => {
+    const transferConstStyle = transferConst.map((el) => {
       let tempTxt;
       switch (el) {
         case 'start':
@@ -58,8 +58,7 @@ export default class Flex extends React.Component<FlexProps, any> {
       </View>
     );
 
-    const shouldWrapInTouchableComponent =
-      restProps.onPress || restProps.onLongPress || restProps.onPressIn || restProps.onPressOut;
+    const shouldWrapInTouchableComponent = restProps.onPress || restProps.onLongPress || restProps.onPressIn || restProps.onPressOut;
 
     if (shouldWrapInTouchableComponent) {
       return <TouchableWithoutFeedback {...restProps}>{inner}</TouchableWithoutFeedback>;

@@ -1,12 +1,6 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
-import {
-  Modal as RNModal,
-  StyleProp,
-  StyleSheet,
-  View,
-  ViewStyle,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import { Modal as RNModal, StyleProp, StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
+
 import Color from 'color';
 
 export type ModalProps = {
@@ -66,18 +60,7 @@ export type ModalRefType = {
 };
 
 const Modal = forwardRef<ModalRefType, ModalProps>((props, ref) => {
-  const {
-    mask = true,
-    maskClosable = true,
-    maskStyle,
-    onShow,
-    afterClose,
-    visible: visibleProp,
-    children,
-    bodyStyle,
-    center,
-    ...rest
-  } = props;
+  const { mask = true, maskClosable = true, maskStyle, onShow, afterClose, visible: visibleProp, children, bodyStyle, center, ...rest } = props;
 
   const [visible, setVisible] = useState(visibleProp);
 
@@ -120,14 +103,7 @@ const Modal = forwardRef<ModalRefType, ModalProps>((props, ref) => {
   };
 
   return (
-    <RNModal
-      {...rest}
-      visible={visible}
-      style={[styles.root]}
-      onShow={handleShow}
-      onRequestClose={handleAfterClose}
-      animationType="fade"
-    >
+    <RNModal {...rest} visible={visible} style={[styles.root]} onShow={handleShow} onRequestClose={handleAfterClose} animationType='fade'>
       {mask && (
         <TouchableWithoutFeedback onPress={handleMaskClose}>
           <View style={[styles.mask, maskStyle]} />

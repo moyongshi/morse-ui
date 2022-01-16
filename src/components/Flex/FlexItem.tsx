@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleProp, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
+
 import { FlexItemPropsType } from './PropsType';
 
 export interface FlexItemProps extends FlexItemPropsType {
@@ -29,8 +30,7 @@ export default class FlexItem extends React.Component<FlexItemProps, any> {
       </View>
     );
 
-    const shouldWrapInTouchableComponent =
-      restProps.onPress || restProps.onLongPress || restProps.onPressIn || restProps.onPressOut;
+    const shouldWrapInTouchableComponent = restProps.onPress || restProps.onLongPress || restProps.onPressIn || restProps.onPressOut;
 
     if (shouldWrapInTouchableComponent) {
       return <TouchableWithoutFeedback {...restProps}>{inner}</TouchableWithoutFeedback>;

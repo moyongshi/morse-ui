@@ -1,6 +1,8 @@
 import React, { ComponentProps, isValidElement, ReactNode, useState } from 'react';
 import { GestureResponderEvent, StyleProp, StyleSheet, Text, TextStyle, TouchableHighlight, TouchableOpacity, ViewStyle } from 'react-native';
 
+import Color from 'color';
+
 import { defaultTheme } from '../../core/Theme';
 import renderNode from '../../utils/renderNode';
 import IconFont from '../Icon';
@@ -108,6 +110,7 @@ const Button = ({
   };
 
   const fillStyle: StyleProp<ViewStyle> = {
+    ...{ paddingVertical: spacing * 2, paddingHorizontal: spacing * 4 },
     ...(fill === 'solid' && { backgroundColor: mainColor }),
     ...(fill === 'outlined' && {
       borderColor: mainColor,
@@ -117,7 +120,8 @@ const Button = ({
   };
 
   // 按下的背景色
-  const underlayColor = fill === 'solid' ? palette[color].active : fill === 'outlined' ? palette.gray['gray-1'] : 'white';
+  const underlayColor =
+    fill === 'solid' ? palette[color].active : fill === 'outlined' ? Color(palette[`${colorProp}`].active).lighten(0.9).hex() : 'white';
 
   const boxChildren =
     loadingProp && loadingText ? (
@@ -125,7 +129,7 @@ const Button = ({
         loadingText
       ) : (
         <>
-          <IconFont size={20} name="add" color={mainColor} style={{ marginRight: 8 }} />
+          <IconFont size={20} name='add' color={mainColor} style={{ marginRight: 8 }} />
           <Text style={textStyle}>{loadingText}</Text>
         </>
       )
@@ -160,8 +164,6 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: spacing * 2,
-    paddingHorizontal: spacing * 4,
     borderRadius: spacing,
   },
 });

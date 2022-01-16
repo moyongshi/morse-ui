@@ -1,5 +1,6 @@
-import React, { PureComponent, CSSProperties } from 'react';
-import { StyleSheet, View, ViewStyle, UIManager, Animated, Easing } from 'react-native';
+import React, { CSSProperties, PureComponent } from 'react';
+import { Animated, Easing, StyleSheet, UIManager, View, ViewStyle } from 'react-native';
+
 import PropsType from './PropsType';
 import popupStyle from './style/index.native';
 // import Mask from '../Mask';
@@ -38,7 +39,7 @@ export default class Popup extends PureComponent<PopupProps, any> {
   componentDidMount() {
     const { translateValue } = this.state;
     // const { visible } = this.props;
-    translateValue.addListener(value => {
+    translateValue.addListener((value) => {
       this.animationEnd(value);
     });
     // if (visible) {
@@ -118,7 +119,7 @@ export default class Popup extends PureComponent<PopupProps, any> {
     }).start();
   };
 
-  animationEnd = value => {
+  animationEnd = (value) => {
     const { afterClose } = this.props;
 
     if (this.state.animationState === 'leave' && value.value === 0 && this.state.isPending) {
@@ -171,16 +172,13 @@ export default class Popup extends PureComponent<PopupProps, any> {
 
     const popupCls = [styles!.wrapperStyle, styles![`${direction}Wrapper`], style] as ViewStyle;
 
-    const invisibleStyle = [
-      styles!.invisibleWrapper,
-      styles![`${direction}Invisible`],
-    ] as ViewStyle;
+    const invisibleStyle = [styles!.invisibleWrapper, styles![`${direction}Invisible`]] as ViewStyle;
 
     const popUpStyle = [popupCls, directionStyle, transfromStyle];
 
     return (
       <View style={invisibleStyle}>
-        <Animated.View style={popUpStyle} onLayout={e => this.onLayout(e, direction, this)}>
+        <Animated.View style={popUpStyle} onLayout={(e) => this.onLayout(e, direction, this)}>
           {children}
         </Animated.View>
         {this.renderMask()}

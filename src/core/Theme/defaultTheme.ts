@@ -122,6 +122,18 @@ export interface Theme {
     tooltip: number;
   };
   spacing: number;
+  font: {
+    sm: number;
+    xs: number;
+    md: number;
+    lg: number;
+    xl: number;
+  };
+  radius: {
+    sm: number;
+    md: number;
+    lg: number;
+  };
 }
 
 const defaultTheme: Theme = {
@@ -182,6 +194,18 @@ const defaultTheme: Theme = {
     tooltip: 100,
   },
   spacing: 4,
+  font: {
+    xs: 10,
+    sm: 12,
+    md: 14,
+    lg: 16,
+    xl: 18,
+  },
+  radius: {
+    sm: 2,
+    md: 4,
+    lg: 8,
+  },
 };
 
 export default defaultTheme;

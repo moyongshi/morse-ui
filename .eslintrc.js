@@ -5,7 +5,6 @@ module.exports = {
     'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
     'react/require-default-props': 'off',
     'react-native/sort-styles': ['error', 'asc', { ignoreClassNames: true, ignoreStyleProperties: true }],
-    'react-native/sort-styles': ['error', 'asc', { ignoreClassNames: true, ignoreStyleProperties: true }],
     'prettier/prettier': [
       2,
       {
@@ -22,6 +21,8 @@ module.exports = {
       'warn',
       {
         groups: [
+          // Packages. `react`、`@ctrip` related packages come first.
+          ['^react'],
           // Packages.
           // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
           ['^@?\\w'],
@@ -39,6 +40,15 @@ module.exports = {
     'simple-import-sort/exports': 'warn',
     'react-native-a11y/has-accessibility-hint': 0,
     'react-native-a11y/has-valid-accessibility-descriptors': 0,
-    'react-native/no-raw-text': [2, { skip: ['Button'] }],
+    'react-native/no-raw-text': [0, { skip: ['Button', 'Card'] }],
   },
+  overrides: [
+    {
+      files: ['src/index.tsx', 'src/index.ts'],
+      rules: {
+        'simple-import-sort/imports': ['off'],
+        'simple-import-sort/exports': ['off'],
+      },
+    },
+  ],
 };

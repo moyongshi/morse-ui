@@ -1,4 +1,4 @@
-export type ContainerType = HTMLElement | (() => HTMLElement) ;
+export type ContainerType = HTMLElement | (() => HTMLElement);
 
 export default interface PropsType {
   visible: boolean;

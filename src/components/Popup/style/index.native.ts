@@ -1,4 +1,5 @@
 import { Dimensions } from 'react-native';
+
 import variables from '../../../core/Theme/default.native';
 
 export default {

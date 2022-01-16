@@ -1,20 +1,21 @@
-import { Button, Flex, defaultTheme } from 'morse-ui';
 import React, { FunctionComponent } from 'react';
-import { StyleSheet, Text, Dimensions } from 'react-native';
+import { Dimensions, StyleSheet, Text } from 'react-native';
+
+import { Button, defaultTheme, Flex } from 'morse-ui';
 
 const { spacing, palette } = defaultTheme;
 let { width } = Dimensions.get('window');
 
 function AllButtons() {
   return (
-    <Flex direction="column" align="start" justify="start" style={styles.root}>
+    <Flex direction='column' align='start' justify='start' style={styles.root}>
       <Title>fill</Title>
       <Content>
         <Button style={styles.button}>solid</Button>
-        <Button fill="outlined" style={styles.button}>
+        <Button fill='outlined' style={styles.button}>
           outlined
         </Button>
-        <Button fill="none" style={styles.button}>
+        <Button fill='none' style={styles.button}>
           none
         </Button>
       </Content>
