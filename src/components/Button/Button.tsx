@@ -1,8 +1,6 @@
 import React, { ComponentProps, isValidElement, ReactNode, useState } from 'react';
 import { GestureResponderEvent, StyleProp, StyleSheet, Text, TextStyle, TouchableHighlight, TouchableOpacity, ViewStyle } from 'react-native';
 
-import Color from 'color';
-
 import { defaultTheme } from '../../core/Theme';
 import renderNode from '../../utils/renderNode';
 import IconFont from '../Icon';
@@ -21,6 +19,10 @@ type OwnProps = ComponentProps<typeof TouchableOpacity> & {
    * 颜色
    */
   color?: ButtonColorType;
+  /**
+   * 按钮尺寸
+   */
+  size?: ButtonSizeType;
   /**
    * 按钮失效状态
    */
@@ -74,6 +76,11 @@ export type ButtonFillType = 'solid' | 'outlined' | 'none';
 export type ButtonColorType = 'primary' | 'success' | 'warning' | 'error';
 
 /**
+ * 按钮尺寸
+ */
+export type ButtonSizeType = 'lg' | 'ld' | 'xs' | 'sm';
+
+/**
  * 按钮
  * 1、点击功能
  * 2、三种模式的样式
@@ -120,8 +127,7 @@ const Button = ({
   };
 
   // 按下的背景色
-  const underlayColor =
-    fill === 'solid' ? palette[color].active : fill === 'outlined' ? Color(palette[`${colorProp}`].active).lighten(0.9).hex() : 'white';
+  const underlayColor = fill === 'solid' ? palette[color].active : fill === 'outlined' ? palette.gray['gray-1'] : 'white';
 
   const boxChildren =
     loadingProp && loadingText ? (
@@ -134,7 +140,7 @@ const Button = ({
         </>
       )
     ) : (
-      renderNode(Text, children, { style: textStyle })
+      React.Children.map(children, (child) => renderNode(Text, child, { style: textStyle }))
     );
 
   const handlePressIn = (e: GestureResponderEvent) => {
