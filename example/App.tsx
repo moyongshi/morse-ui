@@ -13,7 +13,7 @@ LogBox.ignoreAllLogs();
 
 export default function App() {
   return (
-    <Flex direction='column' style={styles.root}>
+    <Flex direction='column' align={'stretch'} style={styles.root}>
       {/*状态栏*/}
       <StatusBar style='auto' />
       {/*<AllCard />*/}
