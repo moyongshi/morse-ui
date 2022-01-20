@@ -2,13 +2,12 @@ import React from 'react';
 import { LogBox, StyleSheet } from 'react-native';
 
 import { StatusBar } from 'expo-status-bar';
-import { defaultTheme, Flex } from 'morse-ui';
+import { Flex } from 'morse-ui';
 
 import AllCard from './components/AllCard';
+import DividerExample from './components/DividerExample';
 
 export const STATUS_HEIGHT = 30;
-
-const { palette } = defaultTheme;
 
 LogBox.ignoreAllLogs();
 
@@ -17,7 +16,8 @@ export default function App() {
     <Flex direction='column' style={styles.root}>
       {/*状态栏*/}
       <StatusBar style='auto' />
-      <AllCard />
+      {/*<AllCard />*/}
+      <DividerExample />
     </Flex>
   );
 }
@@ -25,7 +25,7 @@ export default function App() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    paddingTop: STATUS_HEIGHT,
-    backgroundColor: palette.background.default,
+    backgroundColor: 'rgb(245, 247, 250)',
+    marginTop: STATUS_HEIGHT,
   },
 });

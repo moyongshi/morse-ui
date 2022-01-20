@@ -139,6 +139,8 @@ const Button = ({
           <Text style={textStyle}>{loadingText}</Text>
         </>
       )
+    ) : React.Children.count(children) > 1 ? (
+      React.Children.map(children, (child) => renderNode(Text, child, { style: textStyle }))
     ) : (
       React.Children.map(children, (child) => renderNode(Text, child, { style: textStyle }))
     );

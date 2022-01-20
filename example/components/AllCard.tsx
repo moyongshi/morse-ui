@@ -27,7 +27,7 @@ const AllCard: VoidFunctionComponent<OwnProps> = () => {
             <VanIconAdd size={size} />
           </Button>
         )}
-        extra={() => <Button>确认</Button>}
+        extra={() => <Button fill={'outlined'}>确认</Button>}
       />
       <Card
         style={styles.card}

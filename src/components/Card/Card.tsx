@@ -57,6 +57,7 @@ const cardStyles = StyleSheet.create(cardStyle);
  * 卡片
  * 1、整体支持点击
  * 2、区分header和body区域，分别支持点击操作
+ * 3、一定要设置宽度，否则无法正常显示
  * @param {React.PropsWithChildren<OwnProps>} props
  * @return {JSX.Element}
  * @constructor

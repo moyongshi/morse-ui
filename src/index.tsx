@@ -9,6 +9,9 @@ export type { CardProps, CardSizeType } from './components/Card';
 export { default as Modal } from './components/Modal';
 export * from './components/Modal';
 
+export { default as Divider } from './components/Divider';
+export * from './components/Divider';
+
 export * from './core/Theme';
 
 export { default as IconFont } from './components/Icon';
