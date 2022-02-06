@@ -75,10 +75,10 @@ export interface Theme {
       white: string;
     };
     primary: PaletteBasicType;
+    info: PaletteBasicType;
+    success: PaletteBasicType;
     error: PaletteBasicType;
     warning: PaletteBasicType;
-    success: PaletteBasicType;
-    info: PaletteBasicType;
     background: {
       paper: string;
       default: string;

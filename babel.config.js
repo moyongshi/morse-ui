@@ -1,6 +1,7 @@
 module.exports = {
   presets: ['module:metro-react-native-babel-preset'],
   plugins: [
+    '@emotion/babel-plugin',
     [
       'import',
       {
@@ -11,10 +12,6 @@ module.exports = {
       },
       'ahooks',
     ],
-    [
-      'import',
-      { libraryName: 'lodash', libraryDirectory: '', style: false, camel2DashComponentName: false },
-      'lodash',
-    ],
+    ['import', { libraryName: 'lodash', libraryDirectory: '', style: false, camel2DashComponentName: false }, 'lodash'],
   ].filter(Boolean),
 };

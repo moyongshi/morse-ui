@@ -50,7 +50,8 @@
     "@babel/runtime": "^7.16.7",
     "@callstack/eslint-config": "^12.0.1",
     "@commitlint/cli": "^16.0.2",
-    "@types/color": "^3.0.2",
+    "@emotion/babel-plugin": "^11.7.2",
+    "@types/color": "^3.0.3",
     "@types/enzyme": "^3.10.11",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^27.4.0",
@@ -87,8 +88,8 @@
     "typescript": "^4.5.4"
   },
   "dependencies": {
-    "@emotion/native": "^11.0.0",
-    "ahooks": "^3.1.5",
+    "@callstack/react-theme-provider": "^3.0.7",
+    "ahooks": "^3.1.9",
     "color": "^4.2.0",
     "expo-constants": "^13.0.0",
     "prop-types": "^15.8.1",
@@ -98,8 +99,7 @@
     "react-native-builder-bob": "^0.18.2",
     "react-native-iphone-x-helper": "^1.3.1",
     "react-native-render-html": "^6.3.3",
-    "react-native-svg": "^12.1.1",
-    "theming": "^3.3.0"
+    "react-native-svg": "^12.1.1"
   },
   "peerDependencies": {
     "react": ">=17",

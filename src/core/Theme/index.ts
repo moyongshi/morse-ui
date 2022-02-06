@@ -1,10 +1,8 @@
-import { createContext } from 'react';
+import { createTheming } from '@callstack/react-theme-provider';
 
-import { createTheming } from 'theming';
+import defaultTheme from './defaultTheme';
+const { ThemeProvider, withTheme, useTheme } = createTheming(defaultTheme);
 
-import defaultTheme, { Theme } from './defaultTheme';
-
-export const { ThemeProvider, useTheme, withTheme } = createTheming<Theme>(createContext(defaultTheme));
-
-export { defaultTheme };
-export * from './defaultTheme';
+export type { Theme } from './defaultTheme';
+export { ThemeProvider, useTheme, withTheme };
+export default defaultTheme;

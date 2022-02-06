@@ -1,7 +1,7 @@
 import React, { ComponentProps, isValidElement, ReactNode, useState } from 'react';
 import { GestureResponderEvent, StyleProp, StyleSheet, Text, TextStyle, TouchableHighlight, TouchableOpacity, ViewStyle } from 'react-native';
 
-import { defaultTheme } from '../../core/Theme';
+import defaultTheme from '../../core/Theme';
 import renderNode from '../../utils/renderNode';
 import IconFont from '../Icon';
 
