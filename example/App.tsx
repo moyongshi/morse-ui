@@ -4,7 +4,6 @@ import { LogBox, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Flex } from 'morse-ui';
 
-import AllCard from './components/AllCard';
 import DividerExample from './components/DividerExample';
 
 export const STATUS_HEIGHT = 30;

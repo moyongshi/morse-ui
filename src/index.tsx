@@ -12,6 +12,8 @@ export * from './components/Modal';
 export { default as Divider } from './components/Divider';
 export * from './components/Divider';
 
+export { default as Surface } from './components/Surface';
+
 export * from './core/Theme';
 
 export { default as IconFont } from './components/Icon';
