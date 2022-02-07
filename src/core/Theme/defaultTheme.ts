@@ -79,6 +79,12 @@ export interface Theme {
     success: PaletteBasicType;
     error: PaletteBasicType;
     warning: PaletteBasicType;
+    text: {
+      primary: string;
+      secondary: string;
+      disabled: string;
+    };
+    divider: string;
     background: {
       paper: string;
       default: string;
@@ -172,6 +178,12 @@ const defaultTheme: Theme = {
       paper: gray['gray-2'],
       default: '#ffffff',
     },
+    text: {
+      primary: 'rgba(0, 0, 0, 0.87)',
+      secondary: 'rgba(0, 0, 0, 0.6)',
+      disabled: 'rgba(0, 0, 0, 0.38)',
+    },
+    divider: 'rgba(0, 0, 0, 0.12)',
     action: {
       disabledOpacity: 0.5,
       activatedOpacity: 0.3,
