@@ -2,14 +2,15 @@ module.exports = {
   extends: ['@callstack'],
   plugins: ['simple-import-sort'],
   rules: {
-    'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
+    'no-console': ['warn', {allow: ['warn', 'error', 'info']}],
     'react/require-default-props': 'off',
-    'react-native/sort-styles': ['error', 'asc', { ignoreClassNames: true, ignoreStyleProperties: true }],
+    'react-native/sort-styles': ['error', 'asc', {ignoreClassNames: true, ignoreStyleProperties: true}],
     'prettier/prettier': [
-      2,
+      0,
       {
         jsxSingleQuote: true,
         printWidth: 150,
+        proseWrap: 'preserve',
         bracketSpacing: true,
         singleQuote: true,
         jsxBracketSameLine: false,
@@ -39,12 +40,13 @@ module.exports = {
     ],
     'simple-import-sort/exports': 'warn',
     'react-native-a11y/has-accessibility-hint': 0,
-    'react-native-a11y/has-valid-accessibility-descriptors': 0,
-    'react-native/no-raw-text': [0, { skip: ['Button', 'Card'] }],
+    'react-native-a11y/rule-name': 0,
+    'react-native-a11y/has-valid-accessibility-ignores-invert-colors': 0,
+    'react-native/no-raw-text': [0, {skip: ['Button', 'Card']}],
   },
   overrides: [
     {
-      files: ['src/index.tsx', 'src/index.ts'],
+      files: ['src/index.tsx', 'src/index.tsx'],
       rules: {
         'simple-import-sort/imports': ['off'],
         'simple-import-sort/exports': ['off'],

@@ -5,7 +5,7 @@ import defaultTheme from '../../core/Theme';
 import renderNode from '../../utils/renderNode';
 import IconFont from '../Icon';
 
-const { spacing, palette } = defaultTheme;
+const {spacing, palette} = defaultTheme;
 
 type OwnProps = ComponentProps<typeof TouchableOpacity> & {
   /**
@@ -86,21 +86,21 @@ export type ButtonSizeType = 'lg' | 'ld' | 'xs' | 'sm';
  * 2、三种模式的样式
  */
 const Button = ({
-  fill = 'solid',
-  color: colorProp = 'primary',
-  disabled: disabledProp,
-  loading: loadingProp,
-  leftIcon: leftIconProp,
-  startIcon: startIconProp,
-  rightIcon: rightIconProp,
-  endIcon: endIconProp,
-  style,
-  loadingText,
-  children,
-  onPressIn,
-  onPressOut,
-  ...pressRest
-}: OwnProps) => {
+                  fill = 'solid',
+                  color: colorProp = 'primary',
+                  disabled: disabledProp,
+                  loading: loadingProp,
+                  leftIcon: leftIconProp,
+                  startIcon: startIconProp,
+                  rightIcon: rightIconProp,
+                  endIcon: endIconProp,
+                  style,
+                  loadingText,
+                  children,
+                  onPressIn,
+                  onPressOut,
+                  ...pressRest
+                }: OwnProps) => {
   const [isActive, setIsActive] = useState(false);
   const disabled = disabledProp || loadingProp;
   const startIcon = leftIconProp || startIconProp;
@@ -112,13 +112,13 @@ const Button = ({
   const textColor = 'white';
 
   const textStyle: StyleProp<TextStyle> = {
-    ...(fill === 'solid' && { color: textColor }),
-    ...(fill === 'outlined' && { color: mainColor }),
+    ...(fill === 'solid' && {color: textColor}),
+    ...(fill === 'outlined' && {color: mainColor}),
   };
 
   const fillStyle: StyleProp<ViewStyle> = {
-    ...{ paddingVertical: spacing * 2, paddingHorizontal: spacing * 4 },
-    ...(fill === 'solid' && { backgroundColor: mainColor }),
+    ...{paddingVertical: spacing * 2, paddingHorizontal: spacing * 4},
+    ...(fill === 'solid' && {backgroundColor: mainColor}),
     ...(fill === 'outlined' && {
       borderColor: mainColor,
       borderWidth: 1,
@@ -135,14 +135,14 @@ const Button = ({
         loadingText
       ) : (
         <>
-          <IconFont size={20} name='add' color={mainColor} style={{ marginRight: 8 }} />
+          <IconFont size={20} name='add' color={mainColor} style={{marginRight: 8}} />
           <Text style={textStyle}>{loadingText}</Text>
         </>
       )
     ) : React.Children.count(children) > 1 ? (
-      React.Children.map(children, (child) => renderNode(Text, child, { style: textStyle }))
+      React.Children.map(children, (child) => renderNode(Text, child, {style: textStyle}))
     ) : (
-      React.Children.map(children, (child) => renderNode(Text, child, { style: textStyle }))
+      renderNode(Text, children, {style: textStyle})
     );
 
   const handlePressIn = (e: GestureResponderEvent) => {

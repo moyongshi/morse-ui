@@ -1,5 +1,5 @@
 import React, { VoidFunctionComponent } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { Card, Divider } from 'morse-ui';
 
@@ -8,9 +8,6 @@ type OwnProps = {};
 const DividerExample: VoidFunctionComponent<OwnProps> = () => {
   return (
     <View style={styles.root}>
-      <View style={{ height: 100 }}>
-        <Text>aaa</Text>
-      </View>
       <Card title={'默认分割线'} style={styles.card} bodyStyle={styles.body}>
         <Divider />
       </Card>

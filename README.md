@@ -81,6 +81,11 @@ expo init example
 
 ### 主题 
 
+### 组件
+
+1. Image
+2. Animated
+
 ### 编写自动构建命令
 
 ### 生成创建包的模板
