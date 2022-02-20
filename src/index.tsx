@@ -21,4 +21,4 @@ export * from './components/Icon';
 
 export { default as Popup } from './components/Popup';
 
-export { Fade } from './components/Trasitions';
+export * from './components/Trasitions';

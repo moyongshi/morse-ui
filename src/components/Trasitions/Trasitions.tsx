@@ -24,7 +24,7 @@ const defaultStyles = {
 };
 
 /**
- * 遍历输入的动画参数，计算差值
+ * 将输入插值映射到输出端
  * @param animateValue
  * @returns {(initial: ISupportedTransitions, to: ISupportedTransitions) => any}
  */
@@ -62,6 +62,11 @@ const defaultTransitionConfig: ITransitionConfig = {
   delay: 0,
 };
 
+/**
+ * 通用的动画控制组件
+ * 使用animateValue，结合插值方法，设置开始到结束动画
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<ITransitionProps> & React.RefAttributes<unknown>>}
+ */
 export const Transition = forwardRef(
   ({
      children,
@@ -146,13 +151,14 @@ export const Transition = forwardRef(
       prevVisible.current = visible;
     }, [visible]);
 
-    // If exit animation is present and state is exiting, we replace 'initial' with 'exit' animation
-
     const initialState = animationState === 'exited' && exit ?
       {...defaultStyles, ...exit} : {...defaultStyles, ...initial};
 
     const animateState = {...defaultStyles, ...animate};
 
+    /**
+     * 将animate中的每个动画值进行插值，对应开始和结束
+     */
     const styles = React.useMemo(() => {
       return [getAnimatedStyles(animateValue)(initialState as ISupportedTransitions, animateState as ISupportedTransitions), style];
     }, [animateValue, initial, animate, style]);

@@ -38,8 +38,8 @@ function App() {
       <StatusBar style='auto' />
       {/*<AllCard />*/}
       {/*<DividerExample />*/}
-      {/*<TrasitionExamples />*/}
-      <AnimateExamples />
+      <TrasitionExamples />
+      {/*<AnimateExamples />*/}
     </Flex>
   );
 }

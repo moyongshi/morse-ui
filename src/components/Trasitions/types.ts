@@ -1,37 +1,39 @@
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
 
-interface IBoxProps<T = null> extends ViewProps {
+interface IBoxProps extends ViewProps {
   children?: JSX.Element | JSX.Element[] | string | any;
 }
 
-export type IFadeProps = IBoxProps<IFadeProps> & {
+export interface IFadeProps extends IBoxProps {
   in?: boolean;
   entryDuration?: number;
   exitDuration?: number;
   delay?: number;
-};
+}
 
-export type IScaleFadeProps = IBoxProps<IScaleFadeProps> & {
+export interface IScaleFadeProps extends IBoxProps {
   in?: boolean;
   duration?: number;
   delay?: number;
   initialScale?: number;
-};
-export type ISlideProps = IBoxProps<ISlideProps> & {
+}
+
+export interface ISlideProps extends IBoxProps {
   in?: boolean;
   duration?: number;
   delay?: number;
   placement?: 'top' | 'bottom' | 'right' | 'left';
   overlay?: boolean;
-};
-export type ISlideFadeProps = IBoxProps<ISlideFadeProps> & {
+}
+
+export interface ISlideFadeProps extends IBoxProps {
   in?: boolean;
   delay?: number;
   duration?: number;
   offsetX?: number;
   offsetY?: number;
-};
+}
 
 export interface ISupportedTransitions {
   opacity?: number;
@@ -49,7 +51,7 @@ export interface ITransitionConfig {
   overshootClamping?: boolean;
   restDisplacementThreshold?: number;
   restSpeedThreshold?: number;
-  velocity?: number | { x: number; y: number };
+  velocity?: number | {x: number; y: number};
   bounciness?: number;
   speed?: number;
   tension?: number;
@@ -88,8 +90,7 @@ export interface ITransitionProps extends ViewProps {
    */
   visible?: boolean;
 
-  animationExited?: boolean;
-  children?: any;
+  children?: ReactNode | ReactNode[];
   as?: any;
 }
 
