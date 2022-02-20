@@ -1,22 +1,22 @@
 import defaultTheme from '../../core/Theme/defaultTheme';
+import { padding } from '../../utils/style';
 
 const {
   spacing,
   font,
-  palette: { gray },
+  palette: {gray},
   radius,
 } = defaultTheme;
 
 const CardStyle = {
-  root: { borderRadius: radius.md },
+  root: {borderRadius: radius.md},
   rootBorder: {
     borderColor: gray['gray-1'],
     borderWidth: 1,
   },
   //region Header
   header: {
-    paddingHorizontal: spacing * 3,
-    paddingVertical: spacing * 2,
+    ...padding(spacing * 2, spacing * 3),
     flexGrow: 0,
     flexShrink: 1,
     flexBasis: 'auto',
@@ -40,40 +40,40 @@ const CardStyle = {
   },
   //endregion
   body: {
-    paddingHorizontal: spacing * 3,
-    paddingVertical: spacing * 2,
+    ...padding(spacing * 2, spacing * 3),
     flexGrow: 0,
     flexShrink: 1,
     flexBasis: 'auto',
+    flexWrap: 'wrap'
   },
   divider: {
     borderTopWidth: 0.6,
     borderTopColor: gray['gray-1'],
   },
 
-  largeRoot: { borderRadius: radius.lg },
-  defaultRoot: { borderRadius: radius.md },
-  smallRoot: { borderRadius: radius.sm },
+  largeRoot: {borderRadius: radius.lg},
+  defaultRoot: {borderRadius: radius.md},
+  smallRoot: {borderRadius: radius.sm},
 
-  largeHeader: { paddingHorizontal: spacing * 4, paddingVertical: spacing * 3 },
-  defaultHeader: { paddingHorizontal: spacing * 3, paddingVertical: spacing * 2 },
-  smallHeader: { paddingHorizontal: spacing * 2, paddingVertical: spacing },
+  largeHeader: {...padding(spacing * 3, spacing * 4)},
+  defaultHeader: {...padding(spacing * 2, spacing * 3)},
+  smallHeader: {...padding(spacing, spacing * 2)},
 
-  largeBody: { paddingHorizontal: spacing * 4, paddingVertical: spacing * 3 },
-  defaultBody: { paddingHorizontal: spacing * 3, paddingVertical: spacing * 2 },
-  smallBody: { paddingHorizontal: spacing * 2, paddingVertical: spacing },
+  largeBody: {...padding(spacing * 4, spacing * 3)},
+  defaultBody: {...padding(spacing * 3, spacing * 2)},
+  smallBody: {...padding(spacing * 2, spacing)},
 
-  largeText: { fontSize: font.lg },
-  largeDesc: { fontSize: font.lg, color: gray['gray-6'] },
-  largeTitle: { fontSize: font.xl },
+  largeText: {fontSize: font.lg},
+  largeDesc: {fontSize: font.lg, color: gray['gray-6']},
+  largeTitle: {fontSize: font.xl},
 
-  defaultText: { fontSize: font.md },
-  defaultDesc: { fontSize: font.md, color: gray['gray-6'] },
-  defaultTitle: { fontSize: font.lg },
+  defaultText: {fontSize: font.md},
+  defaultDesc: {fontSize: font.md, color: gray['gray-6']},
+  defaultTitle: {fontSize: font.lg},
 
-  smallText: { fontSize: font.xs },
-  smallDesc: { fontSize: font.xs, color: gray['gray-6'] },
-  smallTitle: { fontSize: font.md },
+  smallText: {fontSize: font.xs},
+  smallDesc: {fontSize: font.xs, color: gray['gray-6']},
+  smallTitle: {fontSize: font.md},
 };
 
 export default CardStyle;
