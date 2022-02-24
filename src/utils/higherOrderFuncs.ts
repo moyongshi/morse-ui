@@ -12,4 +12,22 @@ const manageReducers = function () {
   };
 };
 
+//region any
+/**
+ * 验证数据中有一个值为true
+ * @param {T[]} arr
+ * @param {(t: T) => boolean} fn
+ * @returns {boolean}
+ */
+const any = <T = any>(arr: T[], fn: (t: T) => boolean = Boolean) => arr.some(fn)
+
+const arr = [1, 2, 3, 4, 0]
+
+any(arr, (t) => Boolean(t))
+//endregion
+
+const and = <T = any, U = any>(t: T, u: U) => Boolean(t) && Boolean(u)
+
+and(true, true)
+
 export { manageReducers };
