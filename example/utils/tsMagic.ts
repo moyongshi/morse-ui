@@ -25,4 +25,23 @@ type ToFunc = {
   [k in keyof SampleType as `get${k}`]: (args: SampleType[k]) => void
 }
 
-export type { SplitPath, UnpackPromise }
+interface Stu {
+  name: string;
+  nest: {
+    a: {
+      b: number;
+    };
+    tt: {
+      c: boolean;
+    };
+  };
+  info: {
+    score: number;
+    grade: string;
+  };
+}
+
+
+type DeepKeyOf<T> = T extends Record<string, any> ? { [k in keyof T]: k extends string ? k | `${k}.${DeepKeyOf<T[k]>}` : never; }[keyof T] : never
+
+export type { SplitPath, UnpackPromise, DeepKeyOf }

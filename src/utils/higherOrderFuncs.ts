@@ -1,18 +1,3 @@
-const rates: {[key: string]: string} = {
-  us: '6.5',
-  eu: '7.5',
-};
-
-const manageReducers = function () {
-  return function (state: {[key: string]: number}, item: {price: number}) {
-    return Object.keys(rates).reduce((nextState, key) => {
-      state[`${key}Total`] += item.price * Number(rates[key]);
-      return state;
-    }, {});
-  };
-};
-
-//region any
 /**
  * 验证数据中有一个值为true
  * @param {T[]} arr
@@ -21,13 +6,17 @@ const manageReducers = function () {
  */
 const any = <T = any>(arr: T[], fn: (t: T) => boolean = Boolean) => arr.some(fn)
 
-const arr = [1, 2, 3, 4, 0]
-
-any(arr, (t) => Boolean(t))
-//endregion
-
 const and = <T = any, U = any>(t: T, u: U) => Boolean(t) && Boolean(u)
 
-and(true, true)
+/**
+ * 包装函数
+ * @example
+ * const firstTwoMax = ary(Math.max, 2);
+ * [[2, 6, 12], [6, 4, 8], [10]].map((x) => firstTwoMax(...x)); // [6, 6, 10]
+ * @param {(...args: T[]) => T} fn
+ * @param {number} n
+ * @return {(...args: T[]) => T}
+ */
+const ary = <T = any>(fn: (...args: T[]) => T, n: number) => (...args: T[]) => fn(...args.slice(0, n))
 
-export { manageReducers };
+export { and, any, ary };
