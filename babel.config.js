@@ -1,7 +1,7 @@
 module.exports = {
-  presets: ['module:metro-react-native-babel-preset'],
+  presets: ['module:metro-react-native-babel-preset', "@babel/preset-env", "@babel/preset-react"],
   plugins: [
-    '@emotion/babel-plugin',
+    '@babel/plugin-transform-runtime',
     [
       'import',
       {
@@ -12,6 +12,6 @@ module.exports = {
       },
       'ahooks',
     ],
-    ['import', { libraryName: 'lodash', libraryDirectory: '', style: false, camel2DashComponentName: false }, 'lodash'],
+    ['import', {libraryName: 'lodash', libraryDirectory: '', style: false, camel2DashComponentName: false}, 'lodash'],
   ].filter(Boolean),
 };

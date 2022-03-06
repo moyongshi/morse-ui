@@ -19,4 +19,16 @@ const and = <T = any, U = any>(t: T, u: U) => Boolean(t) && Boolean(u)
  */
 const ary = <T = any>(fn: (...args: T[]) => T, n: number) => (...args: T[]) => fn(...args.slice(0, n))
 
-export { and, any, ary };
+/**
+ * 根据过滤函数将数值分为两组
+ * @param {T[]} arr
+ * @param {(arg: T) => boolean} filter
+ * @return {T}
+ */
+const bifurcate = <T = any>(arr: T[], filter: (arg: T) => boolean) =>
+  arr.reduce((pre, cur,) => {
+    pre[filter(cur) ? 0 : 1].push(cur)
+    return pre
+  }, [[] as T[], [] as T[]])
+
+export { and, any, ary, bifurcate };

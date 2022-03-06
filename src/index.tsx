@@ -14,7 +14,8 @@ export * from './components/Divider';
 
 export { default as Surface } from './components/Surface';
 
-export * from './core/Theme';
+export { default as defaultTheme, ThemeProvider, useTheme, withTheme } from './core/Theme'
+export type { Theme } from './core/Theme'
 
 export { default as IconFont } from './components/Icon';
 export * from './components/Icon';
